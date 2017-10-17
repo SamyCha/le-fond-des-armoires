@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'figaro'
 gem 'devise'
 
 # Front
@@ -42,6 +42,7 @@ gem "bootstrap-sass", '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem "simple_form"
 gem 'autoprefixer-rails'
+gem 'omniauth-facebook'
 
 
 group :development, :test do
