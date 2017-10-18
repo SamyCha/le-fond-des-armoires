@@ -1,23 +1,27 @@
-<div class="container">
-  <div class="map-layout">
-    <div class="card-container">
-      <p><strong>Title:</strong> <%= @product.title %></p>
-      <p><strong>Description:</strong><%= @product.description %></p>
-      <p><strong>Image url:</strong><%= @product.image_url %></p>
-      <p><strong>Price:</strong><%= @product.price %></p>
-      <p><strong>Category:</strong><%= @product.category %></p>
-      <p><strong>Marque:</strong><%= @product.price %></p>
-      <p><strong>Sexe:</strong><%= @product.price %></p>
-      <p><strong>Taille:</strong><%= @product.taille %></p>
-      <p><strong>Etat:</strong><%= @product.etat %></p>
-      <p><strong>Couleur:</strong><%= @product.couleur %></p>
-      <p><strong>Matière:</strong><%= @product.matiere %></p>
-      <%= link_to 'Edit', edit_product_path(@product), class:"btn btn-primary" %> |
-      <%= link_to 'Back', products_path, class:"btn btn-danger" %>
+  <div class="container">
+    <div class="row">
+      <% @products %>
+        <div class="col-xs-12 col-sm-4">
+        <%= render "card", product: @product %>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+          <% @product.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 263, height: 175, crop: :fill %>
+          <% end %>
+          </div>
+
+          <div class="col-xs-12 col-sm-12">
+          <p><strong>Price:</strong><%= @product.price %></p>
+          <p><strong>Marque:</strong><%= @product.price %></p>
+          <p><strong>Sexe:</strong><%= @product.price %></p>
+          <p><strong>Taille:</strong><%= @product.taille %></p>
+          <p><strong>Etat:</strong><%= @product.etat %></p>
+          <p><strong>Couleur:</strong><%= @product.couleur %></p>
+          <p><strong>Matière:</strong><%= @product.matiere %></p>
+          <%= link_to 'Edit', edit_product_path(@product), class:"btn btn-primary" %> |
+          <%= link_to 'Back', products_path, class:"btn btn-danger" %>
+        </div>
+
     </div>
-    <div class="map-container">
-      <div id="map">
-      </div>
-    </div>
-  </div>
 </div>
+
