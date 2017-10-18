@@ -5,6 +5,7 @@
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "armoires.png" %>
+
   <% end %>
 
   <!-- Right Navigation -->
@@ -17,10 +18,14 @@
     <%= link_to "Les prochains evenements", "#", class: "navbar-wagon-item navbar-wagon-link" %>
     <%= link_to "Ajouter un article", new_product_path, class: "btn btn-danger" %>
 
+
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+    <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
+    <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>
@@ -42,6 +47,9 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
+
+ <%= link_to "Sign in with facebook", omniauth_authorize_path('user', 'facebook'), class: "navbar-wagon-item navbar-wagon-link" %><br />
+
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>

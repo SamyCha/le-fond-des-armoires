@@ -3,11 +3,11 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <%= simple_form_for(@product) do |f| %>
       <%= f.error_notification %>
+      <%= f.input :category %>
       <%= f.input :title %>
       <%= f.input :description %>
       <%= f.input :image_url %>
       <%= f.input :price %>
-      <%= f.input :type, placeholder:"chaussures" %>
       <%= f.input :sexe %>
       <%= f.input :taille %>
       <%= f.input :marque %>
