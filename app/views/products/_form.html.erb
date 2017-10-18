@@ -4,8 +4,9 @@
       <%= simple_form_for(@product) do |f| %>
       <%= f.error_notification %>
       <%= f.input :photos, as: :attachinary %>
-      <%= f.input :category %>
       <%= f.input :title %>
+      <%= f.input :category %>
+      <%= f.input :address %>
       <%= f.input :description %>
       <%= f.input :price %>
       <%= f.input :sexe %>

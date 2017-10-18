@@ -7,11 +7,18 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
-  end
+    @products = Product.where.not(latitude: nil, longitude: nil)
 
+    @hash = Gmaps4rails.build_markers(@products) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+  end
+end
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find(params[:id])
+    @product_coordinates = { lat: @product.latitude, lng: @product.longitude }
   end
 
   # GET /products/new
