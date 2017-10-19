@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019114129) do
+ActiveRecord::Schema.define(version: 20171019120036) do
 
   create_table "attachinary_files", force: :cascade do |t|
     t.string "attachinariable_type"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(version: 20171019114129) do
     t.string "facebook_picture_url"
     t.string "token"
     t.datetime "token_expiry"
+    t.integer "state", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["state"], name: "index_users_on_state"
   end
 
 end
