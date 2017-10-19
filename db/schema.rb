@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018153322) do
+ActiveRecord::Schema.define(version: 20171019114129) do
 
   create_table "attachinary_files", force: :cascade do |t|
     t.string "attachinariable_type"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20171018153322) do
     t.datetime "updated_at", null: false
     t.string "sexe"
     t.string "marque"
-    t.integer "taille"
     t.string "etat"
     t.string "couleur"
     t.string "matiere"
@@ -43,6 +42,7 @@ ActiveRecord::Schema.define(version: 20171018153322) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.string "taille"
   end
 
   create_table "users", force: :cascade do |t|
