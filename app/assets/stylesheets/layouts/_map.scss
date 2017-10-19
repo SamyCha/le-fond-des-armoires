@@ -1,0 +1,19 @@
+.map-layout {
+  display: flex;
+  align-items: stretch;
+}
+
+.cards-container{
+  flex: 0 0 60%;
+}
+
+.map-container{
+  flex: 0 0 40%;
+}
+
+#map {
+
+  height: 50vh;
+  position: sticky !important; /* !important to override Gmaps inline CSS */
+  top: 0px !important;
+}
