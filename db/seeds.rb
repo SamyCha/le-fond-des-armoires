@@ -21,5 +21,5 @@ pull2 = Product.create( title: "Pull Creeks", category: "Pull", address: "Place 
 jean2 = Product.create( title: "Jean Le Temps des Cerises", category: "Pantallon", address: "boulevard Garnier Royan", description: "Jean delavé", price: 29, sexe: "femme", taille: "36", marque: "Diesel", etat: "bon état", matiere: "jean", couleur: "bleu")
 
 #users
-client1 = User.create(first_name: "Samy", last_name: "Chalak", address:"Bordeaux", phone:"061011121314", email:"samy@gmail.com", password:"123456", state:0)
-vendeur1 = User.create(first_name: "Sarah", last_name: "Chalak", address:"Paris", phone:"061011121314", email:"sarah@gmail.com", password:"123456", state:1)
+client1 = User.create(first_name: "Samy", last_name: "Chalak", address:"Bordeaux", phone:"061011121314", email:"samy@gmail.com", password:"123456", state:0 )
+vendeur1 = User.create(first_name: "Sarah", last_name: "Chalak", address:"Paris", phone:"061011121314", email:"sarah@gmail.com", password:"123456", state:1 )
