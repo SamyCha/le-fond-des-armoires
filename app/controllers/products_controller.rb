@@ -7,6 +7,13 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    #searchbar
+      if params[:search]
+        @products = Product.search(params[:search]).order("created_at DESC")
+      else
+        @products = Product.all.order('created_at DESC')
+      end
+
     @products = Product.where.not(latitude: nil, longitude: nil)
 
     @hash = Gmaps4rails.build_markers(@products) do |product, marker|
