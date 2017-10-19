@@ -1,8 +1,9 @@
+
 <div class="text-center">
   <h1 >Dans nos @rmoires</h1>
   <%= form_tag(products_path, :method => "get", id: "search-form") do %>
   <%= text_field_tag :search, params[:search], placeholder: "" %>
-  <%= submit_tag "Rechercher un produit" %>
+  <%= submit_tag "Rechercher un article" %>
   <% end %>
 
     <% if @product.present? %>
@@ -11,7 +12,6 @@
       <p>Nous n'avons pas ce produit <%= params[:search] %></p>
     <% end %>
 </div>
-
   <div class="map-layout">
 
     <div class="cards-container">
