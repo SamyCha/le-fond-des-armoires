@@ -1,5 +1,15 @@
-<div class="banner text-center text-center" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://images.containerstore.com/medialibrary/images/elfa/landingPage/2014Updates/elfa_landing_best_selling.jpg');">
-  <div class="banner-content">
-    <h1>Dans nos @rmoires</h1>
-    <p>Le vide dressing tendance chic</p>
-    <%= link_to "Fouiller dans les @rmoires", products_path, class: "btn btn-danger" %>
+    <div class="banner" style="background: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('images/background.jpg');">
+      <div class="banner-content">
+        <h1>Dans nos @rmoires</h1>
+        <p>Le vide dressing tendance chic</p>
+        <form action="#" class="form-inline">
+          <input type="text" class="form-control input-lg" placeholder="checkout">
+          <select name="" id="" class="form-control input-lg">
+            <option value="1">1 person</option>
+            <option value="2">2 persons</option>
+            <option value="3">3 persons</option>
+          </select>
+           <%= link_to "Fouiller dans les @rmoires", products_path, class: "btn btn-primary btn-lg" %>
+        </form>
+      </div>
+    </div>

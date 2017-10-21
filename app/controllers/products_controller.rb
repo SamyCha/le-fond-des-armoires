@@ -1,79 +1,54 @@
 class ProductsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index]
-
+  skip_before_action :authenticate_user!, only: [ :index, :show]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
-  # GET /products
-  # GET /products.json
   def index
     @products = Product.all
-    #searchbar
+    # ?pour ordonner les produits par category    @products = Product.order(:category)
+
+    # pour la searchbar
       if params[:search]
         @products = Product.search(params[:search]).order("created_at DESC")
       else
         @products = Product.all.order('created_at DESC')
       end
-
-    @products = Product.where.not(latitude: nil, longitude: nil)
-
-    @hash = Gmaps4rails.build_markers(@products) do |product, marker|
+    #pour le geocoder
+      @products = Product.where.not(latitude: nil, longitude: nil)
+    #pour le geocoder
+      @hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
+    end
   end
-end
-  # GET /products/1
-  # GET /products/1.json
+
   def show
-    @product = Product.find(params[:id])
     @product_coordinates = { lat: @product.latitude, lng: @product.longitude }
   end
 
-  # GET /products/new
   def new
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
   def create
-    @product = Product.new(product_params)
-    respond_to do |format|
+    @product = Product.create(product_params)
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
+      redirect_to_product_path(@product)
       else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+      render :new
       end
-    end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+    @product.update(params[:product])
+    redirect_to_product_path
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to product_path
   end
 
   private
@@ -84,6 +59,11 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:category, :title, :description, :price, :taille, :sexe, :etat, :couleur, :matiere, photos: [])
+      params.require(:product).permit(:category, :title, :description, :address, :price, :taille, :marque, :sexe, :etat, :couleur, :matiere, photos: [])
+    #Mise en forme des Fonts sur les cards
+      parameters[:category] = parameters[:category].capitalize
+      parameters[:title] = parameters[:title].upcase
+      parameters[:description] = parameters[:description].downcase
+      return parameters
     end
 end

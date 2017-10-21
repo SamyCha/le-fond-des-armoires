@@ -9,10 +9,10 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
     <%= render 'shared/flashes' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <%= render "shared/navbar" %>
 
     <%= yield %>
     <%= cloudinary_js_config %>
@@ -25,6 +25,10 @@
      <%= javascript_include_tag 'application' %>
 
      <%= yield(:after_js) %>
+
+
+
+
   </body>
 
 </html>
