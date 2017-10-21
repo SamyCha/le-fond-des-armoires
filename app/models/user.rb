@@ -8,6 +8,13 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:facebook]
 
+  validates :email, presence: true, uniqueness: true, allow_blank: false
+  validates :encrypted_password, presence: true, uniqueness: true, allow_blank: false
+  validates :phone, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :address, presence: true
+
 def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)

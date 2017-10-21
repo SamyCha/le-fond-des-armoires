@@ -1,6 +1,7 @@
-.map-layout {
+.container {
   display: flex;
-  align-items: stretch;
+  flex-wrap: wrap;
+
 }
 
 .cards-container{
@@ -12,8 +13,7 @@
 }
 
 #map {
-
   height: 50vh;
   position: sticky !important; /* !important to override Gmaps inline CSS */
-  top: 0px !important;
+  top: 10px !important;
 }
