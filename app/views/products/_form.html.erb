@@ -1,7 +1,7 @@
-<div class="container">
+
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for(@product) do |f| %>
+      <%= simple_form_for @product do |f| %>
       <%= f.error_notification %>
       <%= f.input :photos, as: :attachinary %>
       <%= f.input :title %>
@@ -15,8 +15,8 @@
       <%= f.input :etat, placeholder:"neuf, bon état, occasion, usé..." %>
       <%= f.input :matiere %>
       <%= f.input :couleur %>
-      <%= f.button :submit %>
+      <%= f.submit "Ajouter un article", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
-</div>
+
