@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'figaro'
 gem 'devise'
+gem 'pundit'
 gem "geocoder"
 gem "gmaps4rails"
 

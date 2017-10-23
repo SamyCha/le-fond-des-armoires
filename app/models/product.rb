@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   has_attachments :photos, maximum: 4
+  belongs_to :user
 
   validates :title, presence: true
   validates :category, presence: true

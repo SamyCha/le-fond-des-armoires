@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = policy_scope(Product)
     # ?pour ordonner les produits par category    @products = Product.order(:category)
 
     # pour la searchbar
@@ -26,44 +26,63 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+   #@user = User.find(params[:user_id])
+   @product = Product.new
+   authorize @product
   end
 
   def edit
   end
 
   def create
-    @product = Product.create(product_params)
-      if @product.save
-      redirect_to_product_path(@product)
-      else
-      render :new
+    @product = current_user.products.build(product_params)
+    authorize @product
+    # we need `user_id` to asssociate product with corresponding user
+respond_to do |format|
+    if @product.save
+      format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      format.json { render json: @product, status: :created, location: @product }
+    else
+      format.html { render action: "new" }
+      format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   def update
-    @product.update(params[:product])
-    redirect_to_product_path
+    respond_to do |format|
+    if @product.update(product_params)
+      format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      format.json { render json: @product, status: :created, location: @product }
+    else
+      format.html { render action: "new" }
+      format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
     @product.destroy
-      redirect_to product_path
+       respond_to do |format|
+      format.html { redirect_to product_url, notice: 'Product was successfully created.' }
+      format.json { render json: no_content }
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+      authorize @product
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:category, :title, :description, :address, :price, :taille, :marque, :sexe, :etat, :couleur, :matiere, photos: [])
     #Mise en forme des Fonts sur les cards
-      parameters[:category] = parameters[:category].capitalize
-      parameters[:title] = parameters[:title].upcase
-      parameters[:description] = parameters[:description].downcase
-      return parameters
+      #parameters[:category] = parameters[:category].capitalize
+      #parameters[:title] = parameters[:title].upcase
+      #parameters[:description] = parameters[:description].downcase
+      #return parameters
     end
 end
