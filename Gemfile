@@ -37,6 +37,7 @@ gem 'figaro'
 gem 'devise'
 gem "geocoder"
 gem "gmaps4rails"
+gem 'activeadmin', github: 'activeadmin/activeadmin'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
